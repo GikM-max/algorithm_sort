@@ -1,0 +1,44 @@
+选择排序
+基本思想
+每一趟从待排序的数据元素中选出最小（或最大）的一个元素，按照顺序放在待排序的数列的最前，直到全部待排序的数据元素排完。
+
+排序过程
+例如:
+
+初始：[5 4 6 8 7 1 2 3]
+第一趟排序后 1 [4 6 8 7 5 2 3]
+第二趟排序后 1 2 [6 8 7 5 4 3]
+第三趟排序后 1 2 3 [8 7 5 4 6]
+第四趟排序后 1 2 3 4 [7 5 8 6]
+第五趟排序后 1 2 3 4 5 [7 8 6]
+第六趟排序后 1 2 3 4 5 6 [8 7]
+第七趟排序后 1 2 3 4 5 6 7 [8]
+最后排序结果 1 2 3 4 5 6 7 8
+
+#include<iostream>
+using namespace std;
+int a[] = {5, 4, 6, 8, 7, 1, 2, 3};
+void select_Sort(int *a, int len) {
+    for (int i = 0; i < len; i ++) {
+        int min = i;  
+        for(int j = i + 1;j < len; j ++) {  //对待排数组遍历
+            if(a[min] > a[j])  //如果排列完的数组中min大于待排中的j则交换下标
+                min = j;
+        }
+        // if (min != i)
+        //     swap(a[i], a[min]);
+        int t = a[i];
+        a[i] = a[min];
+        a[min] = t;
+    }
+
+}
+int main()
+{
+    select_Sort(a, 8);
+    for (int i = 0; i < 8; i ++) {
+        cout << a[i] << " ";
+    }
+    // for(auto i : a) cout << i << " ";
+    return 0;
+}
